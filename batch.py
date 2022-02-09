@@ -35,9 +35,9 @@ class batch(object):
 
 
     #按照种类匹配删除
-    def match_remove(self,dir_path,name=None,fileType_list=['all']，current_dir=True):
+    def match_remove(self,dir_path,name=None,fileType_list=['all'],current_dir=True):
         count=0
-        del_path_list = self.get_name_filetype_match_filelist(dir_path,name,fileType_list，current_dir=current_dir)
+        del_path_list = self.get_name_filetype_match_filelist(dir_path=dir_path,name=name,fileType_list=fileType_list,current_dir=current_dir)
         for del_path in del_path_list:
             os.remove(del_path)
             count+=1
@@ -45,9 +45,9 @@ class batch(object):
 
 
     #按照文件种类匹配复制到目标文件夹下
-    def match_copy(self,dir_path,Target_Dir_Path,name=None,fileType_list=['all']，current_dir=True):
+    def match_copy(self,dir_path,Target_Dir_Path,name=None,fileType_list=['all'],current_dir=True):
         count=0
-        src_path_list = self.get_name_filetype_match_filelist(dir_path,name,fileType_list，current_dir=current_dir)
+        src_path_list = self.get_name_filetype_match_filelist(dir_path=dir_path,name=name,fileType_list=fileType_list,current_dir=current_dir)
         for src_path in src_path_list:
             src_filename = os.path.basename(src_path)
             copyfile(src_path,os.path.join(Target_Dir_Path,src_filename))
@@ -121,12 +121,7 @@ class batch(object):
                         chosen_type_name_filelist.append(chosen_name_file)
             return chosen_type_name_filelist
         else:
-            return chosen_type_filelist
-            
-        
-        
-
-                
+            return chosen_type_filelist      
            
             
 
