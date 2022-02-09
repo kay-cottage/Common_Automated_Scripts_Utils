@@ -35,9 +35,9 @@ class batch(object):
 
 
     #按照种类匹配删除
-    def match_remove(self,dir_path,name=None,fileType_list=['all']):
+    def match_remove(self,dir_path,name=None,fileType_list=['all']，current_dir=True):
         count=0
-        del_path_list = self.get_name_filetype_match_filelist(dir_path,name,fileType_list)
+        del_path_list = self.get_name_filetype_match_filelist(dir_path,name,fileType_list，current_dir=current_dir)
         for del_path in del_path_list:
             os.remove(del_path)
             count+=1
@@ -45,9 +45,9 @@ class batch(object):
 
 
     #按照文件种类匹配复制到目标文件夹下
-    def match_copy(self,dir_path,Target_Dir_Path,name=None,fileType_list=['all']):
+    def match_copy(self,dir_path,Target_Dir_Path,name=None,fileType_list=['all']，current_dir=True):
         count=0
-        src_path_list = self.get_name_filetype_match_filelist(dir_path,name,fileType_list)
+        src_path_list = self.get_name_filetype_match_filelist(dir_path,name,fileType_list，current_dir=current_dir)
         for src_path in src_path_list:
             src_filename = os.path.basename(src_path)
             copyfile(src_path,os.path.join(Target_Dir_Path,src_filename))
@@ -66,17 +66,36 @@ class batch(object):
         f.close()
 
 
-    def get_file_list(self,dir_path):
+    # 文件移动（参数【全部必填】：源目录，目标目录，文件）
+    def move_file(self,src_path, dst_path, file):
+        try:
+            f_src = os.path.join(src_path, os.path.basename(file))
+            if not os.path.exists(dst_path):
+                os.mkdir(dst_path)
+            f_dst = os.path.join(dst_path, file)
+            shutil.move(f_src, f_dst)
+        except Exception as e:
+            print('move_file ERROR: ',e)
+        
+
+    # 得到遍历文件的列表，参数【dir_path必填】，current_dir为默认遍历dir_path目录下所有文件
+    def get_file_list(self,dir_path,current_dir=True):
         file_list = []
-        for root,dirs,files in os.walk(dir_path):
-            for name in files:
-                file_list.append(os.path.join(root,name))
-        return file_list
+        if current_dir==True:
+            for name in os.listdir(dir_path):
+                if not bool(os.path.isdir(os.path.join(dir_path,name))):
+                    file_list.append(os.path.join(dir_path,name))
+            return file_list
+        else:        
+            for root,dirs,files in os.walk(dir_path):
+                for name in files:
+                    file_list.append(os.path.join(root,name))
+            return file_list
 
 
-    def get_match_filetype_list(self,dir_path,fileType_list=['all']):
+    def get_match_filetype_list(self,dir_path,fileType_list=['all'],current_dir=True):
         choosen_file_list = []
-        file_list = self.get_file_list(dir_path)
+        file_list = self.get_file_list(dir_path,current_dir=current_dir)
         if fileType_list==['all']:
             return file_list           
 
@@ -92,9 +111,9 @@ class batch(object):
 
 
 
-
-    def get_name_filetype_match_filelist(self,dir_path,name=None,fileType_list=['all']):
-        chosen_type_filelist = self.get_match_filetype_list(dir_path,fileType_list)
+    # 程序列表遍历操作总入口
+    def get_name_filetype_match_filelist(self,dir_path,name=None,fileType_list=['all'],current_dir=True):
+        chosen_type_filelist = self.get_match_filetype_list(dir_path,fileType_list=fileType_list,current_dir=current_dir)
         if name != None:
             chosen_type_name_filelist=[]
             for chosen_name_file in chosen_type_filelist:
@@ -106,11 +125,8 @@ class batch(object):
             
         
         
-        
-            
-        
-        
+
                 
-                                  
+           
             
 
