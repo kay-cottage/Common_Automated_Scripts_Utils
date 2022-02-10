@@ -1,8 +1,7 @@
 # -*- coding: utf-8 -*-
-
 """
 Created on Tue 1 09:12:41 2022
-@author: kayak
+@author: GW.kayak
 """
 import os
 from shutil import copyfile
