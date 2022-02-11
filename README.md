@@ -40,6 +40,7 @@
 
 
 ### 文件批量处理模块：
+> batch.py
 
     * 能够批量对各种类型的文件进行精细化的增删查改操作；
     
@@ -53,6 +54,77 @@
 ### 文件批量读写处理模块：
 
     * 后续将在计划文件批量读写，制图绘图、等方面努力
+
+
+## 如何使用：
+> batch.py
+```python
+class batch()
+ |  文件批量增删查改类下常用方法
+ |  
+ |  Methods defined here:
+ |  
+ |  __init__(self,startNumber=0, )
+ |      初始化方法
+ |      :param startNumber=startNumber
+ |  
+ |  rename_with_num(self,dir_path,name='',fileType='.png')
+ |      目标文件夹下按照自定义规则匹配批量重命名文件
+ |      :param dir_path: 目标目录   必填
+ |      :param name: 文件名修改为name 选填
+ |      :param fileType: 需要修改的文件类型  选填
+ |      :return: 无
+ |  
+ |  match_remove(self,dir_path,name=None,fileType_list=['all'],current_dir=True)
+ |      目标文件夹下按照自定义规则删除文件
+ |      :param dir_path: 目标目录  必填
+ |      :param name: 文件名修改为name 选择填
+ |      :param fileType_list: 需要删除的的文件类型列表，默认'all' 选择填
+ |      :param current_dir: 默认True只处理dir_path当前目录下的所有文件，False则处理当前文件夹及其子文件夹下所有文件  选择填
+ |      :return: 无
+ |
+ |  match_copy(self,dir_path,Target_Dir_Path,name=None,fileType_list=['all'],current_dir=True)
+ |       按照文件匹配规则复制到目标文件夹下
+ |      :param dir_path: 源文件目录  必填
+ |      :param Target_Dir_Path: 目标文件目录  必填
+ |      :param name: 文件名修改为name  选择填
+ |      :param fileType_list: 需要删除的的文件类型列表，默认'all'  选择填 
+ |      :param current_dir: 默认True只处理dir_path当前目录下的所有文件，False则处理当前文件夹及其子文件夹下所有文件  选择填
+ |      :return: 无
+ |
+ |  get_filename_txt(self,dir_path,output_filename='output.txt')
+ |      得到默认目录下所有文件路径并写入到.txt文件中 
+ |      :param dir_path: 目标目录   必填
+ |      :param output_filename: 默认结果输出到output.txt  选择填
+ |      :return: 无
+ |
+ |  move_file(self,src_path, dst_path, file)
+ |      文件移动
+ |      :param src_path: 源目录  必填
+ |      :param dst_path: 目标目录  必填
+ |      :param file: 文件名  必填
+ |      :return: 无
+ |
+ |
+ |  get_name_filetype_match_filelist(self,dir_path,name=None,fileType_list=['all'],current_dir=True)
+ |      程序文件匹配列表遍历操作总入口
+ |      :param dir_path: 源文件目录  必填
+ |      :param name: 文件名含有name关键字  选择填
+ |      :param fileType_list: 需要删除的的文件类型列表，默认'all'，例：['.jpg','.png']  选择填 
+ |      :param current_dir: 默认True只处理dir_path当前目录下的所有文件，False则处理当前文件夹及其子文件夹下所有文件  选择填
+ |      :return: list
+ |
+
+# example
+import batch
+b = batch()
+#筛选文件，得到对应文件路径的列表
+chosen_file_list=b.get_name_filetype_match_filelist(dir_path=r'F:\ASUS\Desktop')
+
+#批量删除某文件夹下的文件
+b.match_remove(dir_path=r'F:\ASUS\Desktop')
+```
+
 
 
 
