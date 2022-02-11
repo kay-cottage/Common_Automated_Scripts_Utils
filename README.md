@@ -8,6 +8,14 @@
 
 一个应用广泛，功能强大，并伴有AI技术辅助的整合了多种常用Python脚本的工具箱；能够在办公自动化批量处理，游戏辅助，文件多模态AI管理等多个领域发挥作用。旨在做到方便快捷、拿来即用。该项目多为个人原创想法的简单实现，后续会不定期继续不断完善功能，敬请期待！
 
+<img src="https://mmbiz.qpic.cn/mmbiz_jpg/QsUWqPChJWaV1iceiausQH7zl0h5sjALjO5R0eRBylrTqSrYQu4bJZoSq9AALIuK3RXHNGTKfib6Fr7ynDcXslUoA/0?wx_fmt=jpeg" width = "800" height = "600" 
+align=center>
+
+<img src="https://mmbiz.qpic.cn/mmbiz_png/QsUWqPChJWaV1iceiausQH7zl0h5sjALjObaib5pwCgIYiczdyISOkuJkOTQm0oicV2Y59GmQXxUYSZkRBcKuetz8KA/0?wx_fmt=png" width = "800" height = "500" 
+align=center>
+
+<img src="https://mmbiz.qpic.cn/mmbiz_jpg/QsUWqPChJWaV1iceiausQH7zl0h5sjALjOv42e0Q4OPTRyhPmmSRxYskycoDOyL1bkyxts5GUOjZia5H8td8ZZrjg/0?wx_fmt=jpeg" width = "800" height = "600" 
+align=center>
 
 
 ## 环境 (Environment)
