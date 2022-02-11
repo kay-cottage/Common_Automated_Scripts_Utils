@@ -215,7 +215,6 @@ yolox.predict.dectect()
 
 > yolox 的电脑屏幕实时目标检测的使用参照以上的example
 ```python
-batch.py
 
 import yolox.predict 
 # 返回目标检测信息的二维列表与image
