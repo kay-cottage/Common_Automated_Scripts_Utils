@@ -244,18 +244,19 @@ filepath=get_classes_path(keyword='car'):
 # demo example
 # 在shufflenetv2\train.py下，初次使用你只需要注意以下参数，其他参数非必须调整：
 
-    #1.需要分类的所有文件的根目录（必填）
-    parser.add_argument('--dir_path', type=str,
+
+#1.需要分类的所有文件的根目录（必填）
+parser.add_argument('--dir_path', type=str,
                         default=r'F:\ASUS\Desktop\class_pic')
 
-    # 模型文件路径（迁移学习必填否则可不填）
-    parser.add_argument('--weights', type=str, default="weights\shufflenetv2_x0.5-f707e7126e.pth",
+# 模型文件路径（迁移学习必填否则可不填）
+parser.add_argument('--weights', type=str, default="weights\shufflenetv2_x0.5-f707e7126e.pth",
                         help='initial weights path')
 
 
 ```
 
-> 学习完的自动分类脚本使用demo
+> 学习完成后的AI相册自动分类使用demo
 ```python
 # demo example
 # shufflenetv2\predict.py
