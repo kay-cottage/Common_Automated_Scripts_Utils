@@ -29,6 +29,7 @@
 
 ### 多模态智能文件管理模块（本地AI相册）：
 >请见 yolox shufflenetv2 
+    
     * 基于shuffleNet、YOLOX等优秀轻量级神经网络，后续还可能会引入GPT、transformer等技术辅助处理；
     * 能够在本地自动根据使用者个人文件分类习惯进行学习，并帮助使用者进行自动相册归档操作且几乎无需对神经网络的训练进行额外操作；
     * 通过多模态搜索，使用者可以根据描述找到相应符合类型的图片；
@@ -37,12 +38,14 @@
 
 ### 智能输入操作模块：
 >请见FindClick.py
+    
     * 支持引入神经网络，使用者可以根据自身需求进行设计，实现自动点击、打卡、刷课、游戏辅助等等操作；  
 
 
 
 ### 文件批量处理模块：
 >请见batch.py
+    
     * 能够批量对各种类型的文件进行精细化的增删查改操作；
 
     
@@ -50,6 +53,7 @@
 
 ### 文件加密模块：
 >请见AesEncrypt.py
+    
     * 基于AES-cfb高级加密，使用者可以轻松对需要加密的文件进行精细化的批量加解密操作，保护隐私安全；
 
 
@@ -204,7 +208,62 @@ yolox.predict.dectect()
 
 ```
 
+### Quick Start！
 
+### 对于多模态智能文件管理模块分别是yolox/shufflenetv2我会在另外的仓库对他们分别进行详细的介绍（未完待续哈）：
+
+
+> yolox 的电脑屏幕实时目标检测的使用参照以上的example
+```python
+batch.py
+
+import yolox.predict 
+yolox.predict.dectect()
+# 返回目标检测信息的二维列表与image
+
+
+```
+
+
+> yolox 的多模态检索，通过文字关键词找到符合描述的相关图片,以下是一个简单demo
+```python
+# yolox\predict.py
+
+import yolox.predict 
+
+#初次使用先建立先在DB.py建数据库,dir_detect_db对图片进行遍历建库
+dir_detect_db(dir_path='F:\ASUS\Desktop')
+
+# 返回符合条件的图片路径
+filepath=get_classes_path(keyword='car'):
+
+```
+
+> shufflenet AI本地相册分类程序的使用。学习你的分类习惯！ 
+```python
+# demo example
+# 在shufflenetv2\train.py下，初次使用你只需要注意以下参数，其他参数非必须调整：
+
+    #1.需要分类的所有文件的根目录（必填）
+    parser.add_argument('--dir_path', type=str,
+                        default=r'F:\ASUS\Desktop\class_pic')
+
+    # 模型文件路径（迁移学习必填否则可不填）
+    parser.add_argument('--weights', type=str, default="weights\shufflenetv2_x0.5-f707e7126e.pth",
+                        help='initial weights path')
+
+
+```
+
+> 学习完的自动分类脚本使用demo
+```python
+# demo example
+# shufflenetv2\predict.py
+
+# 自动将class_pic无需的照片按照你以往的分类习惯进行归类
+main(dir_path=r'F:\ASUS\Desktop\class_pic',model_weight_path = r"F:\ASUS\Desktop\Utils\utils\shufflenetv2\weights\model-13.pth",json_path = './classes1.json)
+
+```
 
 
 ## 更多信息：
@@ -214,3 +273,4 @@ yolox.predict.dectect()
 * 更多信息，相关视频会在那里更新
 
 * 不喜勿喷，谢谢哈
+
