@@ -218,8 +218,9 @@ yolox.predict.dectect()
 batch.py
 
 import yolox.predict 
-yolox.predict.dectect()
 # 返回目标检测信息的二维列表与image
+yolox.predict.dectect()
+
 
 
 ```
