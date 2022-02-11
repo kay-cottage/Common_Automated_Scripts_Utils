@@ -70,48 +70,51 @@ class batch()
  |  
  |  rename_with_num(self,dir_path,name='',fileType='.png')
  |      目标文件夹下按照自定义规则匹配批量重命名文件
- |      :param dir_path: 目标目录   必填
- |      :param name: 文件名修改为name 选填
+ |      :param dir_path: 目标目录  必填
+ |      :param name: 文件名修改为name    选填
  |      :param fileType: 需要修改的文件类型  选填
  |      :return: 无
  |  
  |  match_remove(self,dir_path,name=None,fileType_list=['all'],current_dir=True)
  |      目标文件夹下按照自定义规则删除文件
  |      :param dir_path: 目标目录  必填
- |      :param name: 文件名修改为name 选择填
- |      :param fileType_list: 需要删除的的文件类型列表，默认'all' 选择填
- |      :param current_dir: 默认True只处理dir_path当前目录下的所有文件，False则处理当前文件夹及其子文件夹下所有文件  选择填
+ |      :param name: 文件名修改为name    选择填
+ |      :param fileType_list: 需要删除的的文件类型列表,默认'all'        选择填
+ |      :param current_dir: 默认True只处理dir_path当前目录下的所有文件
+ |                          False则处理当前文件夹及其子文件夹下所有文件    选择填
  |      :return: 无
  |
  |  match_copy(self,dir_path,Target_Dir_Path,name=None,fileType_list=['all'],current_dir=True)
  |       按照文件匹配规则复制到目标文件夹下
  |      :param dir_path: 源文件目录  必填
  |      :param Target_Dir_Path: 目标文件目录  必填
- |      :param name: 文件名修改为name  选择填
- |      :param fileType_list: 需要删除的的文件类型列表，默认'all'  选择填 
- |      :param current_dir: 默认True只处理dir_path当前目录下的所有文件，False则处理当前文件夹及其子文件夹下所有文件  选择填
+ |      :param name:文件名修改为name  选择填
+ |      :param fileType_list: 需要删除的的文件类型列表，默认'all'    选择填 
+ |      :param current_dir:默认True只处理dir_path当前目录下的所有文件
+ |                         False则处理当前文件夹及其子文件夹下所有文件    选择填
  |      :return: 无
  |
  |  get_filename_txt(self,dir_path,output_filename='output.txt')
  |      得到默认目录下所有文件路径并写入到.txt文件中 
- |      :param dir_path: 目标目录   必填
+ |      :param dir_path:        目标目录  必填
  |      :param output_filename: 默认结果输出到output.txt  选择填
  |      :return: 无
  |
  |  move_file(self,src_path, dst_path, file)
  |      文件移动
- |      :param src_path: 源目录  必填
- |      :param dst_path: 目标目录  必填
- |      :param file: 文件名  必填
+ |      :param src_path: 源目录                    必填
+ |      :param dst_path: 目标目录                  必填
+ |      :param file:     文件名                    必填
  |      :return: 无
  |
  |
  |  get_name_filetype_match_filelist(self,dir_path,name=None,fileType_list=['all'],current_dir=True)
  |      程序文件匹配列表遍历操作总入口
- |      :param dir_path: 源文件目录  必填
- |      :param name: 文件名含有name关键字  选择填
- |      :param fileType_list: 需要删除的的文件类型列表，默认'all'，例：['.jpg','.png']  选择填 
- |      :param current_dir: 默认True只处理dir_path当前目录下的所有文件，False则处理当前文件夹及其子文件夹下所有文件  选择填
+ |      :param dir_path: 源文件目录    必填
+ |      :param name: 文件名含有name关键字    选择填
+ |      :param fileType_list: 需要删除的的文件类型列表,默认'all',例：['.jpg','.png']  选择填 
+ |      :param current_dir: 默认True只处理dir_path当前目录下的所有文件
+ |                          False则处理当前文件夹及其子文件夹下所有文件        选择填
  |      :return: list
  |
 
@@ -125,6 +128,76 @@ chosen_file_list=b.get_name_filetype_match_filelist(dir_path=r'F:\ASUS\Desktop')
 b.match_remove(dir_path=r'F:\ASUS\Desktop')
 ```
 
+
+
+> AesEncrypt.py
+```python
+class AesEncrypt()
+ |  常用AES加解密方法，对特定文件做高级加解密
+ |  
+ |  Methods defined here:
+ |  
+ |  __init__(self, key, mode=AES.MODE_CFB)
+ |      初始化方法 AES-cfb需要iv值与key进行操作
+ |      :param mode = mode
+ |      :param key = key
+ |      :param iv = Random.new().read(AES.block_size)
+ |  
+ |  encrypt_file(self,dir_file_list)
+ |      对传入的路径列表中对应的文件做AES-cfb流加密
+ |      :param dir_file_list : 文件路径列表   必填
+ |      :return: 无
+ |  
+ |  decrypt_file(self,dir_file_list)
+ |      对传入的路径列表中对应的文件做AES-cfb逆向解密
+ |      :param dir_file_list : 文件路径列表   必填
+ |      :return: 无
+ |
+ |
+
+# example
+key = '1234567890123456'
+dir_path = r"F:\ASUS\Desktop\test"
+aes = AesEncrypt(key)
+b = batch()
+b = b.get_name_filetype_match_filelist(dir_path = dir_path,fileType_list=['all'])
+
+#encrypt
+aes.encrypt_file(b)
+
+#decrypt
+aes.decrypt_file(b)
+```
+
+> FindClick.py
+```python
+class FindClick()
+ |  常用AES加解密方法，对特定文件做高级加解密
+ |  
+ |  Methods defined here:
+ |  
+ |  __init__(self, Use_AI)
+ |      初始化方法
+ |      :param Use_AI = Use_AI
+ |  
+ |  match_click(self,dir_file_list)
+ |     点击操作脚本控制
+ |      :param match_pic_path :               需需要匹配的图象路径   必填
+ |      :param click : 'click'/'doubleclick'  单双击可选            选择填
+ |      :param confidence:                    匹配置信度            选择填
+ |      :param mousedown_last_time :          鼠标按下多少秒后弹起   选择填
+ |      :return: 无
+ |  
+ |  demo_action(self,dir_file_list)
+ |      自行设计
+ |      :return: 无
+ |
+
+# example in action
+import yolox.predict 
+yolox.predict.dectect()
+
+```
 
 
 
