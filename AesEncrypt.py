@@ -87,13 +87,6 @@ class AesEncrypt(object):
         print('（decrypr successfully)共成功解密'+str(count)+'个文件')  
 
 
-key = '1234567890123456'
-dir_path = r"F:\ASUS\Desktop\A_python_script\Utils\utils\test"
-aes = AesEncrypt(key)
-b = batch()
-b = b.get_name_filetype_match_filelist(dir_path = dir_path,fileType_list=['all'])
-aes.encrypt_file(b)
-time.sleep(15)
-aes.decrypt_file(b)
+
 
 
