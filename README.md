@@ -190,7 +190,7 @@ aes.encrypt_file(b)
 aes.decrypt_file(b)
 ```
 
-> FindClick.py    ([微信跳一跳自动跳跃](https://b23.tv/xo3cwfI))
+> FindClick.py    ([自动化微信跳一跳](https://b23.tv/xo3cwfI))
 ```python
 class FindClick()
  |  匹配鼠标点击键盘操作方法
