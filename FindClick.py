@@ -68,7 +68,7 @@ class FindClick(object):
         else:
             import yolox.predict 
             yolox.predict.dectect()
-            #yolox.predict.dir_detect_db(r'F:\ASUS\Desktop\A_python_script\Utils\utils\yolox\img')
+            
             
             
 
@@ -77,10 +77,4 @@ class FindClick(object):
 
 
      
-   
 
-
-f = findclick(Use_AI = True)
-
-#f.action()
-f.action(match_pic_path = r'6.png' )
