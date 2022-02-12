@@ -151,7 +151,7 @@ file_filter(filter_remove,dir_path=r'F:\python_script\click_script')
 
 
 
-> AesEncrypt.py
+> AesEncrypt.py   ([效果演示请见]( https://b23.tv/GgKn2dO))
 ```python
 class AesEncrypt()
  |  常用AES加解密方法，对特定文件做高级加解密
@@ -190,7 +190,7 @@ aes.encrypt_file(b)
 aes.decrypt_file(b)
 ```
 
-> FindClick.py
+> FindClick.py    ([微信跳一跳自动跳跃](https://b23.tv/xo3cwfI))
 ```python
 class FindClick()
  |  匹配鼠标点击键盘操作方法
@@ -225,7 +225,7 @@ yolox.predict.dectect()
 ### 对于多模态智能文件管理模块分别是yolox/shufflenetv2我会在另外的仓库对他们分别进行详细的介绍（未完待续哈）：
 
 
-> yolox 的电脑屏幕实时目标检测的使用参照以上的example  ([效果演示请见](https://arxiv.org/abs/2103.02907))
+> yolox 的电脑屏幕实时目标检测的使用参照以上的example  ([效果演示请见](https://b23.tv/sxKezze))
 ```python
 
 import yolox.predict 
