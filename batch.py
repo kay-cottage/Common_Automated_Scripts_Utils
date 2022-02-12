@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
-Created on Tue 1 09:12:41 2022
-@author: GW.kayak
+Created on Tue Feb.1 09:12:41 2022
+@author: gw.kayak
 """
 import os
 from shutil import copyfile
@@ -120,7 +120,18 @@ class batch(object):
                         chosen_type_name_filelist.append(chosen_name_file)
             return chosen_type_name_filelist
         else:
-            return chosen_type_filelist      
-           
+            return chosen_type_filelist
             
-
+        
+        
+def file_filter(func,*args, **kwargs):
+    try:
+        b=batch()
+        filter_list=b.get_name_filetype_match_filelist(*args, **kwargs)
+        for file_path in filter_list:
+            func(file_path)
+    except:
+        print('args erro')
+                    
+                
+            
