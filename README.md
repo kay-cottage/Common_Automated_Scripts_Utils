@@ -146,7 +146,7 @@ def filter_remove(file_path):
     os.remove(file_path)
 
 # file_filter 传入参数同get_name_filetype_match_filelist()
-file_filter(filter_remove,dir_path=r'F:\_python_script\click_script')
+file_filter(filter_remove,dir_path=r'F:\python_script\click_script')
 ```
 
 
@@ -225,7 +225,7 @@ yolox.predict.dectect()
 ### 对于多模态智能文件管理模块分别是yolox/shufflenetv2我会在另外的仓库对他们分别进行详细的介绍（未完待续哈）：
 
 
-> yolox 的电脑屏幕实时目标检测的使用参照以上的example
+> yolox 的电脑屏幕实时目标检测的使用参照以上的example  ([效果演示请见](https://arxiv.org/abs/2103.02907))
 ```python
 
 import yolox.predict 
