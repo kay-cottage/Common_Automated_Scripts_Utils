@@ -135,6 +135,17 @@ chosen_file_list=b.get_name_filetype_match_filelist(dir_path=r'F:\ASUS\Desktop')
 
 #批量删除某文件夹下的文件
 b.match_remove(dir_path=r'F:\ASUS\Desktop')
+
+# 如果你熟悉开发工作，遇到需要批量文件操作的工作，你完全是可以通过自定义函数完成一系列的操作
+# file_filter方法支持您将自定义函数传入进行操作
+#example
+from batch import file_filter
+
+def filter_remove(file_path):
+    os.remove(file_path)
+
+# file_filter 传入参数同get_name_filetype_match_filelist()
+file_filter(filter_remove,dir_path=r'F:\_python_script\click_script')
 ```
 
 
