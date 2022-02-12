@@ -14,15 +14,16 @@
 
 * CPU友好型！无须特地安装CUDA 等GPU驱动支持
 * CUDA CUDNN(非必须）
-* Flask-sqlalchemy
 * pywin32 win32api
+* Flask-sqlalchemy
 * python 3.7
 * pyautogui
 * Windows
 * Pythorch
 * pycrypto
-* Pillow
 * opencv
+* Pillow
+
 
 
 
