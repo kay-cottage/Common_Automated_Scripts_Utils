@@ -154,7 +154,22 @@ def filter_remove(file_path):
 # file_filter 传入参数同get_name_filetype_match_filelist()
 file_filter(filter_remove,dir_path=r'F:\python_script\click_script')
 ```
+> 根据题库自动生成复习复习提纲代码使用demo
+```python
+# batch.py
 
+from batch import make_q_a_doc
+
+#question_filepath='question.txt'  必填 该文件装单选题目 不含答案
+#answer_filepath='answer.txt',     必填 该文件装单选答案 
+#output_filepath='output.txt'      必填 该文件为题库生成提纲的输出路径
+doc_dic=make_q_a_doc(question_filepath='question.txt',answer_filepath='answer.txt',output_filepath='output.txt')
+
+
+# 返回输出文本内容的字典doc_dic
+
+
+```
 
 
 > AesEncrypt.py   ([效果演示请见]( https://b23.tv/GgKn2dO))
@@ -285,22 +300,6 @@ main(dir_path=r'F:\ASUS\Desktop\class_pic',model_weight_path = r"F:\ASUS\Desktop
 ```
 
 
-> 根据题库自动生成复习复习提纲代码使用demo
-```python
-# yolox\batch.py
-
-from batch import make_q_a_doc
-
-#question_filepath='question.txt'  必填 该文件装单选题目 不含答案
-#answer_filepath='answer.txt',     必填 该文件装单选答案 
-#output_filepath='output.txt'      必填 该文件为题库生成提纲的输出路径
-doc_dic=make_q_a_doc(question_filepath='question.txt',answer_filepath='answer.txt',output_filepath='output.txt')
-
-
-# 返回输出文本内容的字典doc_dic
-
-
-```
 
 
 
