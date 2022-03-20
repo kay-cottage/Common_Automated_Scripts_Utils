@@ -296,8 +296,9 @@ from batch import make_q_a_doc
 #output_filepath='output.txt'      必填 该文件为题库生成提纲的输出路径
 doc_dic=make_q_a_doc(question_filepath='question.txt',answer_filepath='answer.txt',output_filepath='output.txt')
 
-# 返回符合条件的图片路径
-filepath=get_classes_path(keyword='car'):
+
+# 返回输出文本内容的字典doc_dic
+
 
 ```
 
