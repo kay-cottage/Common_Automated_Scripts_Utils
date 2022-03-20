@@ -66,7 +66,9 @@
 
 ### 文件批量读写处理模块：
 
-    * 后续将在计划文件批量读写，制图绘图、等方面努力
+    * 能够自动将题库题目的正确答案自动匹配到原题中
+   
+    * 能够检测分离出题库题目与正确答案自动生成出复习提纲
 
 
 ## 如何使用：
@@ -281,6 +283,25 @@ parser.add_argument('--weights', type=str, default="weights\shufflenetv2_x0.5-f7
 main(dir_path=r'F:\ASUS\Desktop\class_pic',model_weight_path = r"F:\ASUS\Desktop\Utils\utils\shufflenetv2\weights\model-13.pth",json_path = './classes1.json)
 
 ```
+
+
+> 根据题库自动生成复习复习提纲代码使用demo
+```python
+# yolox\batch.py
+
+from batch import make_q_a_doc
+
+#question_filepath='question.txt'  必填 该文件装单选题目 不含答案
+#answer_filepath='answer.txt',     必填 该文件装单选答案 
+#output_filepath='output.txt'      必填 该文件为题库生成提纲的输出路径
+doc_dic=make_q_a_doc(question_filepath='question.txt',answer_filepath='answer.txt',output_filepath='output.txt')
+
+# 返回符合条件的图片路径
+filepath=get_classes_path(keyword='car'):
+
+```
+
+
 
 
 ## 更多信息：
