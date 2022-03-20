@@ -134,4 +134,148 @@ def file_filter(func,*args, **kwargs):
         print('args erro')
                     
                 
-            
+ import re
+import json
+
+
+# 将答案文件转换为字典{'1': 'A', '2': 'C'}
+def match_answer(answer_filepath):
+    f1=open(answer_filepath,'r',encoding='utf-8')
+    f1=f1.read()
+    
+    num_list=list(re.compile(r'\d+').findall(f1))
+    Answer_list=list(re.compile(r"[A-E]").findall(f1))
+    del f1
+    if len(num_list)==len(Answer_list):
+        return dict(zip(num_list,Answer_list))
+    else:
+        return 'Answer Not Match'
+
+# 返回所有题目的列表，整个文档的列表
+def get_q_list(question_filepath):
+    q_list=[]
+    line_num=0
+    f=open(question_filepath,encoding='utf-8')
+    total_list = f.readlines() 
+    for i in total_list:
+        line_num+=1
+        if re.search('(\d+)',i[0:4]) != None:
+            if re.search('(\d+)',i[0:4]).span()[0]==0:
+                q_list.append(i)
+
+    Answer_index=[]
+    for q in q_list:
+        q_index=total_list.index(q)
+        Answer_index.append(q_index)
+
+    del Answer_index
+
+    return q_list,total_list
+
+# 匹配字符串 强制精确匹配
+def match(sub,all_str):
+    for i in range(len(all_str)):
+        if all_str[i:int(i)+int(len(sub))] == sub:
+            return [i,int(i)+int(len(sub))]
+
+
+#Answer_list:题目列表[[A.XX  B.XX]],返回5个选项的字典
+def get_index(Answer_list,sub_list=['A.','B.','C.','D.','E.']):
+    
+    index_dic={}
+    for sub in sub_list:
+        index_list=[]
+        for i in Answer_list:
+            index=match(sub,str(i))
+            index_list.append(index)
+        index_dic[sub]=index_list    
+    return index_dic
+
+#得到题目索引列表,索引值+1等于五个答案
+#返回答案索引，题号：题目 字典，所有内容 total_list
+def get_a_index(question_filepath,answer_filepath):
+    q_list,total_list=get_q_list(question_filepath)
+    answer_dict = match_answer(answer_filepath)
+
+    Answer_index=[]
+    q_num_list=[]
+    #q:问题
+    for q in q_list:
+        #得到每一个q索引
+        q_index=total_list.index(q)
+        # 题号
+        q_num=re.compile(r'\d+').findall(q[0:4])[0]
+        Answer_index.append(q_index)
+        
+    Answer_list=[]
+    
+    Answer_index.append(len(total_list))
+    
+    for i in Answer_index:
+        if Answer_index.index(i)+1<len(Answer_index):
+            a_start,a_end=int(i)+1,Answer_index[Answer_index.index(i)+1]
+            Answer_list.append(total_list[a_start:a_end])
+    del Answer_index
+    return total_list,q_list,Answer_list
+
+
+# demo a = get_answer(19,'C') 返回19题的c选项内容
+def get_answer(answer_num,sub,question_filepath,answer_filepath,sub_list=['A.','B.','C.','D.','E.']):
+    _,_,Answer_list=get_a_index(question_filepath,answer_filepath)
+    index_dic=get_index(Answer_list)    
+    if sub in 'A.':
+        if index_dic['A.'][answer_num-1] and index_dic['B.'][answer_num-1] != None:
+            return str(Answer_list[answer_num-1])[int(index_dic['A.'][answer_num-1][1]):int(index_dic['B.'][answer_num-1][0])]
+        else:
+            return None
+
+    elif sub in 'B.':
+        if index_dic['B.'][answer_num-1] and index_dic['C.'][answer_num-1] != None:
+            return str(Answer_list[answer_num-1])[int(index_dic['B.'][answer_num-1][1]):int(index_dic['C.'][answer_num-1][0])]
+        else:
+            return None
+
+    elif sub in 'C.':
+        if index_dic['C.'][answer_num-1] and index_dic['D.'][answer_num-1] != None:
+            return str(Answer_list[answer_num-1])[int(index_dic['C.'][answer_num-1][1]):int(index_dic['D.'][answer_num-1][0])]
+        else:
+            return None
+
+    elif sub in 'D.':
+        if index_dic['D.'][answer_num-1] and index_dic['E.'][answer_num-1] != None:
+            return str(Answer_list[answer_num-1])[int(index_dic['D.'][answer_num-1][1]):int(index_dic['E.'][answer_num-1][0])]
+        else:
+            return None
+
+    elif sub in 'E.':
+        if index_dic['E.'][answer_num-1] != None:
+            return str(Answer_list[answer_num-1])[int(index_dic['E.'][answer_num-1][1]):int(len(str(Answer_list[answer_num-1])))]
+        else:
+            return None
+
+        
+
+def get_answer_list(question_filepath,answer_filepath):
+    answer_list=[]
+    answer_dict = match_answer(answer_filepath)        
+    for k,v in answer_dict.items():
+        answer = get_answer(int(k),v,question_filepath,answer_filepath)
+        answer_list.append(answer)
+    return answer_list
+
+
+#生成答案文档文档question_filepath:单选题文档路径，默认A. B. C. D. E.  answer_filepath:答案文档路径 , output_filepath：输出文档路径
+def make_q_a_doc(question_filepath,answer_filepath,output_filepath):
+    _,q_list,_=get_a_index(question_filepath,answer_filepath)
+    answer_list=get_answer_list(question_filepath,answer_filepath)
+
+    all_={}
+    all_=dict(zip(q_list,answer_list))
+    f=open(output_filepath,'w',encoding='utf-8')
+
+    for k,v in all_.items():
+        f.writelines(str(k)+str(v).strip("' \n',[]{}''‘’")+2*'\n')                
+    f.close()
+    print('Match Successfully!'+'成功生成提纲文档 '+output_filepath)
+    del q_list,answer_list
+    return all_         
